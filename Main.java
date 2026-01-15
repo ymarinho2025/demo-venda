@@ -15,15 +15,30 @@ public class Main {
         System.out.println("--------------- Marinho's Store ---------------\n");
 
         System.out.print("Qual seu nome? ");
-        String nome = sc.nextLine();
+        String nome = sc.nextLine().trim();
+
+        if (nome.isEmpty()) {
+            System.out.println("Nome inválido. Encerrando.");
+            sc.close();
+            return;
+        }
 
         System.out.print("");
 
         System.out.print("Qual sua idade? ");
+
+        if (!sc.hasNextInt()) {
+            System.out.println("Idade inválida. Digite um número inteiro. Encerrando.");
+            sc.close();
+            return;
+        }
+
         int idade = sc.nextInt();
+
         if (idade < 18) {
             System.out.println("Você não pode ser menor de idade!");
-            System.exit(0);
+            sc.close();
+            return;
         }
 
         int anoAtual = Year.now().getValue();
